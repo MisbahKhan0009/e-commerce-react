@@ -1,0 +1,72 @@
+.product img {
+  width: 286px;
+  height: 286px;
+  border-radius: 8px;
+  margin: 7px;
+}
+
+.product {
+  width: 300px;
+  height: 510px;
+  border: 2px solid #95a0a7;
+  border-radius: 8px;
+  position: relative;
+}
+
+.product-info {
+  margin: 0px 14px;
+}
+.product-info p {
+  margin-bottom: 0px;
+}
+
+.product-name {
+  color: #0e161a;
+
+  /* H6 */
+  font-family: "Antique Olive";
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: 0.032px;
+  margin-top: 0;
+}
+
+.product-price {
+  color: #0e161a;
+
+  /* Subtitle 1 */
+  font-family: "Antique Olive";
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.026px;
+}
+
+.product-caption {
+  color: #2a414f;
+
+  /* Caption */
+  font-family: "Antique Olive";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.048px;
+}
+
+.add-to-cart {
+  background-color: rgba(255, 153, 0, 0.3);
+  width: 100%;
+  border-radius: 0px 0px 6px 6px;
+  border: 0;
+  border-top: 1px solid #95a0a7;
+  bottom: 0;
+  position: absolute;
+}
+.add-to-cart:hover {
+  background-color: orange;
+}
+
+
+.add-to-cart .btn-text{
+    margin-right: 5px;
+}
