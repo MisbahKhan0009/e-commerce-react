@@ -1,35 +1,80 @@
 import React, { useEffect, useState } from "react";
-import "./shop.css";
+import "./Shop.css";
 import Product from "../Product/Product";
 import Cart from "../Cart/Cart";
+import {
+  addToDb,
+  deleteShoppingCart,
+  getStoredCart,
+} from "../../utilities/fakedb";
+import { Link, useLoaderData } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const Shop = () => {
-  const [products, setProducts] = useState([]);
+  const { products } = useLoaderData();
   const [cart, setCart] = useState([]);
 
-  const handleAddToCart = (product) => {
-    console.log(product);
-    const newCart = [...cart, product];
-    setCart(newCart);
+  const clearCart = () => {
+    setCart([]);
+    deleteShoppingCart();
   };
+
   useEffect(() => {
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
+    const storedCart = getStoredCart();
+    const savedCart = [];
+    for (const id in storedCart) {
+      const addedProduct = products.find(
+        (selectedProduct) => selectedProduct.id === id
+      );
+      if (addedProduct) {
+        const quantity = storedCart[id];
+        addedProduct.quantity = quantity;
+        savedCart.push(addedProduct);
+      }
+    }
+    setCart(savedCart);
+  }, [products]);
+
+  const handleAddToCart = (selectedProduct) => {
+    let newCart = [];
+    const exists = cart.find((product) => product.id === selectedProduct.id);
+    if (!exists) {
+      selectedProduct.quantity = 1;
+      newCart = [...cart, selectedProduct];
+    } else {
+      const rest = cart.filter((product) => product.id !== selectedProduct.id);
+      exists.quantity++;
+      newCart = [...rest, exists];
+    }
+
+    setCart(newCart);
+    addToDb(selectedProduct.id);
+  };
+
   return (
     <div className="shop-container">
       <div className="products-container">
-        {products.map((product) => (
+        {products.map((selectedProduct) => (
           <Product
-            key={product.id}
-            product={product}
+            key={selectedProduct.id}
+            selectedProduct={selectedProduct}
             handleAddToCart={handleAddToCart}
           ></Product>
         ))}
       </div>
       <div className="cart-container">
-        <Cart cart={cart}></Cart>
+        <Cart clearCart={clearCart} cart={cart}>
+          <Link to="/orders">
+            <br />
+            <button className="btn-review">
+              Review Order
+              <span className="text-icon">
+                <FontAwesomeIcon icon={faArrowRight} />
+              </span>
+            </button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );

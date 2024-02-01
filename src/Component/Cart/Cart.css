@@ -1,0 +1,19 @@
+.order-summary-heading {
+  text-align: center;
+}
+.cart {
+  position: sticky;
+  top: 0;
+  padding: 30px 20px;
+}
+.btn-clear {
+  background-color: #ff3030;
+  border: 0;
+  color: white;
+  font-size: 17px;
+  border-radius: 4px;
+}
+
+.text-icon {
+  padding-left: 10px;
+}
