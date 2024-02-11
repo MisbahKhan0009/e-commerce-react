@@ -1,0 +1,19 @@
+.not-found-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5rem;
+  color: hsl(203, 31%, 24%);
+  font-weight: 200;
+  padding-top: 25vh;
+}
+.not-found-text p {
+  padding: 20px;
+}
+
+.verticalLine {
+  border: 0;
+  border-left: thick solid #ff9900;
+  padding: 0;
+  margin: 0;
+}

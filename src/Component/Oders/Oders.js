@@ -3,6 +3,8 @@ import { Link, useLoaderData } from "react-router-dom";
 import Cart from "../Cart/Cart";
 import ReviewItem from "../ReviewItem/ReviewItem";
 import { deleteShoppingCart, removeFromDb } from "../../utilities/fakedb";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const Oders = () => {
   const { initialCart } = useLoaderData();
@@ -34,7 +36,16 @@ const Oders = () => {
         )}
       </div>
       <div className="cart-container">
-        <Cart clearCart={clearCart} cart={cart}></Cart>
+        <Cart clearCart={clearCart} cart={cart}>
+          <Link to="/shipping">
+            <button className="btn-review">
+              Procced Shipping
+              <span className="text-icon">
+                <FontAwesomeIcon icon={faArrowRight} />
+              </span>
+            </button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );
